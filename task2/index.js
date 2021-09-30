@@ -5,20 +5,20 @@ const password = "JdnfkKLdl";
 const app = express();
 const port = 8009;
 
-const cipher = (password, message) => {
-    Vigenere.Cipher(password).crypt(message);
+const cipher = (message) => {
+    return Vigenere.Cipher(password).crypt(message);
 };
 
-const decipher = (password, message) => {
-    Vigenere.Decipher(password).crypt(message);
+const decipher = (message) => {
+   return  Vigenere.Decipher(password).crypt(message);
 };
 
 app.get('/encode/:message', (req, res) => {
-    res.set({'Content-type': 'text/plain'}).send(cipher(password, req.params.message));
+    res.set({'Content-type': 'text/plain'}).send(cipher(req.params.message));
 });
 
 app.get('/decode/:message', (req, res) => {
-    res.set({'Content-type': 'text/plain'}).send(decipher(password, req.params.message));
+    res.set({'Content-type': 'text/plain'}).send(decipher(req.params.message));
 });
 
 
